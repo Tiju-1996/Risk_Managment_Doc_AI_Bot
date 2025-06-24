@@ -10,6 +10,7 @@ from datetime import datetime
 import uuid
 import csv
 import io
+import time
 
 # Policy module imports
 from langchain.chat_models import ChatOpenAI
@@ -469,6 +470,8 @@ else:
     # 5) When the user types a new prompt:
     # ──────────────────────────────────────────────────────────────
     if prompt := st.chat_input(placeholder="Ask a question about the Risk Management module"):
+        start_time = time.time()
+   
         # 5.1) Show the user message in the UI
         st.chat_message("user").write(prompt)
         followup_flag = is_followup_question(llm_audit, st.session_state.risk_mem, prompt)
@@ -496,9 +499,24 @@ else:
         # 5.3) Step 2: Call your existing risk‐query pipeline
         # ──────────────────────────────────────────────────────────
         conv, result_df, sql = process_risk_query(llm_audit, rephrased_question)
-        #conv, result_df, sql = "Ans",None,""
+        #conv, result_df, sql = "Ans",None,"
+
 
         
+        if conv is None:
+            st.chat_message("assistant").write("Sorry, I couldn't answer your question.")
+            st.session_state.risk_msgs.append({"role": "assistant", "content": "Sorry, I couldn't answer your question."} )
+        else:
+            # Show the actual assistant’s final “conversational” response (conv)
+            tab1, tab2 = st.tabs(["Conversational", "Tabular"])
+            tab1.chat_message("assistant").write(conv)
+            tab2.dataframe(result_df, width=600, height=300)
+            st.session_state.risk_msgs.append({"role": "assistant", "content": conv})
+
+        end_time = time.time()
+        response_time = end_time - start_time
+        st.write("response_time",response_time)
+
         # Format the messages into plain text
         formatted_text = ""
         for i, msg in enumerate(history_messages):
@@ -517,19 +535,6 @@ else:
                 file_name=file_name,
                 mime="text/plain"
             )
-
-
-        
-        if conv is None:
-            st.chat_message("assistant").write("Sorry, I couldn't answer your question.")
-            st.session_state.risk_msgs.append({"role": "assistant", "content": "Sorry, I couldn't answer your question."} )
-        else:
-            # Show the actual assistant’s final “conversational” response (conv)
-            tab1, tab2 = st.tabs(["Conversational", "Tabular"])
-            tab1.chat_message("assistant").write(conv)
-            tab2.dataframe(result_df, width=600, height=300)
-            st.session_state.risk_msgs.append({"role": "assistant", "content": conv})
-
 
         
             # ---- Simplified Feedback ----           
