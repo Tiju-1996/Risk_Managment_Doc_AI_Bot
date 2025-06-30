@@ -527,7 +527,7 @@ def debug_query(selected_docs, user_question, sql_query, llm, error):
         "question": user_question,
         "sql_query": sql_query
     })
-    return sql_query #sanitize_query(sql_query)
+    return sanitize_query(sql_query)
 
 
 ############################################################
