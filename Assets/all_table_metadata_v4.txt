@@ -514,8 +514,8 @@ Columns:
     residual_score:  (Residual Score) Risk score calculated after considering implemented mitigation measures.
     previous_residual_last_updated:  (Previous Residual Last Updated) Timestamp of the last update to the residual risk assessment.
     previous_residual_rating:  (Previous Residual Rating) Residual risk rating assigned in the last assessment cycle.
-    inherent_risk_rating:  (Inherent Risk Rating) Overall rating of the inherent risk before mitigation (e.g., High, Medium, Low).
-    residual_risk_rating:  (Residual Risk Rating) Final rating of risk after applying mitigation strategies.
+    inherent_risk_rating:  (Inherent Risk Rating) Overall rating of the inherent risk before mitigation (e.g., Critical, High, Medium, Low).
+    residual_risk_rating:  (Residual Risk Rating) Final rating of risk after applying mitigation strategies (e.g., Critical, High, Medium, Low).
     risk_outcome:  (Risk Outcome) Expected outcome or consequence if the risk materializes.
     risk_velocity:  (Risk Velocity) Speed at which the risk can impact the organization once triggered.
     vulnerability:  (Vulnerability) Weaknesses or gaps in controls that may expose the organization to risk.
