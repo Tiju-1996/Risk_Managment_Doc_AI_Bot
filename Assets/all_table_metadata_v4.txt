@@ -781,7 +781,7 @@ Columns:
     control_multi_entity:  (Entity) Indicates if the control applies across multiple business entities.
     control_functions:  (Functions) The functional areas responsible for implementing the control.
     control_department_level1:  (Department Level 1) The primary department responsible for executing the control.
-    control_department_level2:  (Department Level 2) The sub-department managing the controlâ€™s operations.
+    control_department_level2:  (Department Level 2) The sub-department managing the control operations.
     control_sector:  (Sector) The business sector where the control is implemented.
     control_regions:  (Regions) The geographical regions where the control applies.
     control_impact:  (Impact) The expected impact of the control on mitigating risk.
