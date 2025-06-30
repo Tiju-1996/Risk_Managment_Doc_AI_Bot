@@ -20,7 +20,7 @@ Table: ACTION_TYPE_LOOKUP
 Description: This a look-up table that maps actions to their source. The table helps identifying the action origin/source
 Columns:
     action_id:  (Action ID) Unique reference code assigned to each action for tracking and identification.
-    source:  (Source) Indicates the origin or classification, such as audit, regulation, incident, or control assessment.
+    source:  (Source) Indicates the action origin or action type or action classification, such as Risk, KRI.
     source_table:  (nan) Indicates the origin of the data, specifying which table the record belongs to.
     source_object_id:  (Object ID) Unique system-generated identifier for records across different entities
 Relation:
@@ -75,7 +75,7 @@ Table: CAUSES_MAIN
 Description: Maintains details of identified causes for a corresponding risks, including their description, priority, status, and tracking information for creation and updates. Causes and risks can have many-to-many relationship.
 Columns:
     cause_id:  (Cause ID) A unique identifier assigned to each cause.
-    title:  (Title) A short descriptive title summarizing the cause.
+    title:  (Title) A short descriptive title or cause name summarizing the cause.
     status:  (Cause Status) The current status of the cause (e.g., Open, In Progress, Review).
     priority:  (Priority) The priority level assigned to the cause (e.g., High, Medium, Low).
     description:  (Description) A detailed explanation of the cause and its implications.
