@@ -275,6 +275,17 @@ def question_reframer(selected_docs,user_question,llm):
     5. **Include All Necessary Elements:** Ensure that all relevant tables and columns are mentioned so that a correct SQL query can be constructed in the next stage.
     6. **Avoid Hallucination:** Rely solely on the provided metadata without adding extra or assumed information.
     7. **Self-Verification:** Before finalizing the reformulated question, list the available columns for each table (from the metadata) and cross-check that each column used in your answer is present in the correct table.
+    8. **Include only required Tables**: Use only required tables for joining and use correct method of joining (in most cases inner join works).
+    9. **Count**: When using COUNT(Col_A) in combination with GROUP BY Col_B, it is recommended to use COUNT(DISTINCT Col_A) to avoid duplicate counts, and ensure that only non-null values of Col_B are included in the grouping.
+    10. Col_A by Col_B suggests distribution of Col_A by Col_B.
+    11. When using GROUP BY, ensure that only the columns explicitly requested by the user are included in the grouping. Avoid adding unnecessary columns that may alter the intended grouping results.
+    12.  In case question has terms like Critical, High, Medium, Low rated Risks it usually refers to inherent_risk_rating and/or residual_risk_rating columns, this is relevant to only risks.
+    13.  Please Replace risk_type column with risk_category1 in SQL query if it is there.
+    14. Please do not confuse KRI_MAIN table and its respective columns with key_risk and key_control columns in RISK_UNIVERSE_MAIN and CONTROL_MAIN table respectively.
+    15. When user specifically asks for RCM he requires only risk_id, control_id, risk_name, control_name, inherent_risk_rating, residual_risk_rating, control_rating columns from RU_RCM table.
+    16. In case of KRI dependencies are risks  connected to those KRIs.
+    
+    
     
     Now, based on the metadata above and the user's question below, generate only the reformulated question:
     Example Template for Reframed Question: 
