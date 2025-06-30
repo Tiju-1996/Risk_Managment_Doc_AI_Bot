@@ -66,7 +66,7 @@ NVIDIA_API_KEY   = st.secrets["nvidia"]["api_key"]
 
 # -- Configurations --
 logo = Image.open(r"Assets/aurex_logo.png")
-descriptions_file = r"Assets/all_table_metadata_v3.txt"
+descriptions_file = r"Assets/all_table_metadata_v4.txt"
 examples_file = r"Assets/Example question datasets.xlsx"
 
 db_config = {
